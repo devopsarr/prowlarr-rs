@@ -32,17 +32,17 @@ pub enum GetIndexerNewznabError {
 
 pub async fn get_indexer_download(configuration: &configuration::Configuration, id: i32, link: Option<&str>, file: Option<&str>) -> Result<(), Error<GetIndexerDownloadError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_link = link;
-    let p_file = file;
+    let p_path_id = id;
+    let p_query_link = link;
+    let p_query_file = file;
 
-    let uri_str = format!("{}/api/v1/indexer/{id}/download", configuration.base_path, id=p_id);
+    let uri_str = format!("{}/api/v1/indexer/{id}/download", configuration.base_path, id=p_path_id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_link {
+    if let Some(ref param_value) = p_query_link {
         req_builder = req_builder.query(&[("link", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_file {
+    if let Some(ref param_value) = p_query_file {
         req_builder = req_builder.query(&[("file", &param_value.to_string())]);
     }
     if let Some(ref apikey) = configuration.api_key {
@@ -81,137 +81,137 @@ pub async fn get_indexer_download(configuration: &configuration::Configuration, 
 
 pub async fn get_indexer_newznab(configuration: &configuration::Configuration, id: i32, t: Option<&str>, q: Option<&str>, cat: Option<&str>, imdbid: Option<&str>, tmdbid: Option<i32>, extended: Option<&str>, limit: Option<i32>, offset: Option<i32>, minage: Option<i32>, maxage: Option<i32>, minsize: Option<i64>, maxsize: Option<i64>, rid: Option<i32>, tvmazeid: Option<i32>, traktid: Option<i32>, tvdbid: Option<i32>, doubanid: Option<i32>, season: Option<i32>, ep: Option<&str>, album: Option<&str>, artist: Option<&str>, label: Option<&str>, track: Option<&str>, year: Option<i32>, genre: Option<&str>, author: Option<&str>, title: Option<&str>, publisher: Option<&str>, configured: Option<&str>, source: Option<&str>, host: Option<&str>, server: Option<&str>) -> Result<(), Error<GetIndexerNewznabError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_t = t;
-    let p_q = q;
-    let p_cat = cat;
-    let p_imdbid = imdbid;
-    let p_tmdbid = tmdbid;
-    let p_extended = extended;
-    let p_limit = limit;
-    let p_offset = offset;
-    let p_minage = minage;
-    let p_maxage = maxage;
-    let p_minsize = minsize;
-    let p_maxsize = maxsize;
-    let p_rid = rid;
-    let p_tvmazeid = tvmazeid;
-    let p_traktid = traktid;
-    let p_tvdbid = tvdbid;
-    let p_doubanid = doubanid;
-    let p_season = season;
-    let p_ep = ep;
-    let p_album = album;
-    let p_artist = artist;
-    let p_label = label;
-    let p_track = track;
-    let p_year = year;
-    let p_genre = genre;
-    let p_author = author;
-    let p_title = title;
-    let p_publisher = publisher;
-    let p_configured = configured;
-    let p_source = source;
-    let p_host = host;
-    let p_server = server;
+    let p_path_id = id;
+    let p_query_t = t;
+    let p_query_q = q;
+    let p_query_cat = cat;
+    let p_query_imdbid = imdbid;
+    let p_query_tmdbid = tmdbid;
+    let p_query_extended = extended;
+    let p_query_limit = limit;
+    let p_query_offset = offset;
+    let p_query_minage = minage;
+    let p_query_maxage = maxage;
+    let p_query_minsize = minsize;
+    let p_query_maxsize = maxsize;
+    let p_query_rid = rid;
+    let p_query_tvmazeid = tvmazeid;
+    let p_query_traktid = traktid;
+    let p_query_tvdbid = tvdbid;
+    let p_query_doubanid = doubanid;
+    let p_query_season = season;
+    let p_query_ep = ep;
+    let p_query_album = album;
+    let p_query_artist = artist;
+    let p_query_label = label;
+    let p_query_track = track;
+    let p_query_year = year;
+    let p_query_genre = genre;
+    let p_query_author = author;
+    let p_query_title = title;
+    let p_query_publisher = publisher;
+    let p_query_configured = configured;
+    let p_query_source = source;
+    let p_query_host = host;
+    let p_query_server = server;
 
-    let uri_str = format!("{}/api/v1/indexer/{id}/newznab", configuration.base_path, id=p_id);
+    let uri_str = format!("{}/api/v1/indexer/{id}/newznab", configuration.base_path, id=p_path_id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_t {
+    if let Some(ref param_value) = p_query_t {
         req_builder = req_builder.query(&[("t", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_q {
+    if let Some(ref param_value) = p_query_q {
         req_builder = req_builder.query(&[("q", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_cat {
+    if let Some(ref param_value) = p_query_cat {
         req_builder = req_builder.query(&[("cat", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_imdbid {
+    if let Some(ref param_value) = p_query_imdbid {
         req_builder = req_builder.query(&[("imdbid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_tmdbid {
+    if let Some(ref param_value) = p_query_tmdbid {
         req_builder = req_builder.query(&[("tmdbid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_extended {
+    if let Some(ref param_value) = p_query_extended {
         req_builder = req_builder.query(&[("extended", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_offset {
+    if let Some(ref param_value) = p_query_offset {
         req_builder = req_builder.query(&[("offset", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_minage {
+    if let Some(ref param_value) = p_query_minage {
         req_builder = req_builder.query(&[("minage", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_maxage {
+    if let Some(ref param_value) = p_query_maxage {
         req_builder = req_builder.query(&[("maxage", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_minsize {
+    if let Some(ref param_value) = p_query_minsize {
         req_builder = req_builder.query(&[("minsize", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_maxsize {
+    if let Some(ref param_value) = p_query_maxsize {
         req_builder = req_builder.query(&[("maxsize", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_rid {
+    if let Some(ref param_value) = p_query_rid {
         req_builder = req_builder.query(&[("rid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_tvmazeid {
+    if let Some(ref param_value) = p_query_tvmazeid {
         req_builder = req_builder.query(&[("tvmazeid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_traktid {
+    if let Some(ref param_value) = p_query_traktid {
         req_builder = req_builder.query(&[("traktid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_tvdbid {
+    if let Some(ref param_value) = p_query_tvdbid {
         req_builder = req_builder.query(&[("tvdbid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_doubanid {
+    if let Some(ref param_value) = p_query_doubanid {
         req_builder = req_builder.query(&[("doubanid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_season {
+    if let Some(ref param_value) = p_query_season {
         req_builder = req_builder.query(&[("season", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ep {
+    if let Some(ref param_value) = p_query_ep {
         req_builder = req_builder.query(&[("ep", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_album {
+    if let Some(ref param_value) = p_query_album {
         req_builder = req_builder.query(&[("album", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_artist {
+    if let Some(ref param_value) = p_query_artist {
         req_builder = req_builder.query(&[("artist", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_label {
+    if let Some(ref param_value) = p_query_label {
         req_builder = req_builder.query(&[("label", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_track {
+    if let Some(ref param_value) = p_query_track {
         req_builder = req_builder.query(&[("track", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_year {
+    if let Some(ref param_value) = p_query_year {
         req_builder = req_builder.query(&[("year", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_genre {
+    if let Some(ref param_value) = p_query_genre {
         req_builder = req_builder.query(&[("genre", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_author {
+    if let Some(ref param_value) = p_query_author {
         req_builder = req_builder.query(&[("author", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_title {
+    if let Some(ref param_value) = p_query_title {
         req_builder = req_builder.query(&[("title", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_publisher {
+    if let Some(ref param_value) = p_query_publisher {
         req_builder = req_builder.query(&[("publisher", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_configured {
+    if let Some(ref param_value) = p_query_configured {
         req_builder = req_builder.query(&[("configured", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_source {
+    if let Some(ref param_value) = p_query_source {
         req_builder = req_builder.query(&[("source", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_host {
+    if let Some(ref param_value) = p_query_host {
         req_builder = req_builder.query(&[("host", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_server {
+    if let Some(ref param_value) = p_query_server {
         req_builder = req_builder.query(&[("server", &param_value.to_string())]);
     }
     if let Some(ref apikey) = configuration.api_key {

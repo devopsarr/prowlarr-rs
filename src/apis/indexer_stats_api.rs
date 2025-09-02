@@ -25,28 +25,28 @@ pub enum GetIndexerStatsError {
 
 pub async fn get_indexer_stats(configuration: &configuration::Configuration, start_date: Option<String>, end_date: Option<String>, indexers: Option<&str>, protocols: Option<&str>, tags: Option<&str>) -> Result<models::IndexerStatsResource, Error<GetIndexerStatsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_start_date = start_date;
-    let p_end_date = end_date;
-    let p_indexers = indexers;
-    let p_protocols = protocols;
-    let p_tags = tags;
+    let p_query_start_date = start_date;
+    let p_query_end_date = end_date;
+    let p_query_indexers = indexers;
+    let p_query_protocols = protocols;
+    let p_query_tags = tags;
 
     let uri_str = format!("{}/api/v1/indexerstats", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_start_date {
+    if let Some(ref param_value) = p_query_start_date {
         req_builder = req_builder.query(&[("startDate", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_end_date {
+    if let Some(ref param_value) = p_query_end_date {
         req_builder = req_builder.query(&[("endDate", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_indexers {
+    if let Some(ref param_value) = p_query_indexers {
         req_builder = req_builder.query(&[("indexers", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_protocols {
+    if let Some(ref param_value) = p_query_protocols {
         req_builder = req_builder.query(&[("protocols", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_tags {
+    if let Some(ref param_value) = p_query_tags {
         req_builder = req_builder.query(&[("tags", &param_value.to_string())]);
     }
     if let Some(ref apikey) = configuration.api_key {

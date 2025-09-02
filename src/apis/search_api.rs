@@ -39,7 +39,7 @@ pub enum ListSearchError {
 
 pub async fn create_search(configuration: &configuration::Configuration, release_resource: Option<models::ReleaseResource>) -> Result<models::ReleaseResource, Error<CreateSearchError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_release_resource = release_resource;
+    let p_body_release_resource = release_resource;
 
     let uri_str = format!("{}/api/v1/search", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -63,7 +63,7 @@ pub async fn create_search(configuration: &configuration::Configuration, release
         };
         req_builder = req_builder.header("X-Api-Key", value);
     };
-    req_builder = req_builder.json(&p_release_resource);
+    req_builder = req_builder.json(&p_body_release_resource);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -92,7 +92,7 @@ pub async fn create_search(configuration: &configuration::Configuration, release
 
 pub async fn create_search_bulk(configuration: &configuration::Configuration, release_resource: Option<Vec<models::ReleaseResource>>) -> Result<models::ReleaseResource, Error<CreateSearchBulkError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_release_resource = release_resource;
+    let p_body_release_resource = release_resource;
 
     let uri_str = format!("{}/api/v1/search/bulk", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -116,7 +116,7 @@ pub async fn create_search_bulk(configuration: &configuration::Configuration, re
         };
         req_builder = req_builder.header("X-Api-Key", value);
     };
-    req_builder = req_builder.json(&p_release_resource);
+    req_builder = req_builder.json(&p_body_release_resource);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -145,38 +145,38 @@ pub async fn create_search_bulk(configuration: &configuration::Configuration, re
 
 pub async fn list_search(configuration: &configuration::Configuration, query: Option<&str>, r#type: Option<&str>, indexer_ids: Option<Vec<i32>>, categories: Option<Vec<i32>>, limit: Option<i32>, offset: Option<i32>) -> Result<Vec<models::ReleaseResource>, Error<ListSearchError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_query = query;
-    let p_type = r#type;
-    let p_indexer_ids = indexer_ids;
-    let p_categories = categories;
-    let p_limit = limit;
-    let p_offset = offset;
+    let p_query_query = query;
+    let p_query_type = r#type;
+    let p_query_indexer_ids = indexer_ids;
+    let p_query_categories = categories;
+    let p_query_limit = limit;
+    let p_query_offset = offset;
 
     let uri_str = format!("{}/api/v1/search", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query {
+    if let Some(ref param_value) = p_query_query {
         req_builder = req_builder.query(&[("query", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_type {
+    if let Some(ref param_value) = p_query_type {
         req_builder = req_builder.query(&[("type", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_indexer_ids {
+    if let Some(ref param_value) = p_query_indexer_ids {
         req_builder = match "multi" {
             "multi" => req_builder.query(&param_value.into_iter().map(|p| ("indexerIds".to_owned(), p.to_string())).collect::<Vec<(std::string::String, std::string::String)>>()),
             _ => req_builder.query(&[("indexerIds", &param_value.into_iter().map(|p| p.to_string()).collect::<Vec<String>>().join(",").to_string())]),
         };
     }
-    if let Some(ref param_value) = p_categories {
+    if let Some(ref param_value) = p_query_categories {
         req_builder = match "multi" {
             "multi" => req_builder.query(&param_value.into_iter().map(|p| ("categories".to_owned(), p.to_string())).collect::<Vec<(std::string::String, std::string::String)>>()),
             _ => req_builder.query(&[("categories", &param_value.into_iter().map(|p| p.to_string()).collect::<Vec<String>>().join(",").to_string())]),
         };
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_offset {
+    if let Some(ref param_value) = p_query_offset {
         req_builder = req_builder.query(&[("offset", &param_value.to_string())]);
     }
     if let Some(ref apikey) = configuration.api_key {
