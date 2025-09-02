@@ -81,13 +81,13 @@ pub enum UpdateIndexerProxyError {
 
 pub async fn create_indexer_proxy(configuration: &configuration::Configuration, force_save: Option<bool>, indexer_proxy_resource: Option<models::IndexerProxyResource>) -> Result<models::IndexerProxyResource, Error<CreateIndexerProxyError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_force_save = force_save;
-    let p_indexer_proxy_resource = indexer_proxy_resource;
+    let p_query_force_save = force_save;
+    let p_body_indexer_proxy_resource = indexer_proxy_resource;
 
     let uri_str = format!("{}/api/v1/indexerproxy", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_force_save {
+    if let Some(ref param_value) = p_query_force_save {
         req_builder = req_builder.query(&[("forceSave", &param_value.to_string())]);
     }
     if let Some(ref apikey) = configuration.api_key {
@@ -109,7 +109,7 @@ pub async fn create_indexer_proxy(configuration: &configuration::Configuration, 
         };
         req_builder = req_builder.header("X-Api-Key", value);
     };
-    req_builder = req_builder.json(&p_indexer_proxy_resource);
+    req_builder = req_builder.json(&p_body_indexer_proxy_resource);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -138,10 +138,10 @@ pub async fn create_indexer_proxy(configuration: &configuration::Configuration, 
 
 pub async fn create_indexer_proxy_action_by_name(configuration: &configuration::Configuration, name: &str, indexer_proxy_resource: Option<models::IndexerProxyResource>) -> Result<(), Error<CreateIndexerProxyActionByNameError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_name = name;
-    let p_indexer_proxy_resource = indexer_proxy_resource;
+    let p_path_name = name;
+    let p_body_indexer_proxy_resource = indexer_proxy_resource;
 
-    let uri_str = format!("{}/api/v1/indexerproxy/action/{name}", configuration.base_path, name=crate::apis::urlencode(p_name));
+    let uri_str = format!("{}/api/v1/indexerproxy/action/{name}", configuration.base_path, name=crate::apis::urlencode(p_path_name));
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -163,7 +163,7 @@ pub async fn create_indexer_proxy_action_by_name(configuration: &configuration::
         };
         req_builder = req_builder.header("X-Api-Key", value);
     };
-    req_builder = req_builder.json(&p_indexer_proxy_resource);
+    req_builder = req_builder.json(&p_body_indexer_proxy_resource);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -181,9 +181,9 @@ pub async fn create_indexer_proxy_action_by_name(configuration: &configuration::
 
 pub async fn delete_indexer_proxy(configuration: &configuration::Configuration, id: i32) -> Result<(), Error<DeleteIndexerProxyError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
-    let uri_str = format!("{}/api/v1/indexerproxy/{id}", configuration.base_path, id=p_id);
+    let uri_str = format!("{}/api/v1/indexerproxy/{id}", configuration.base_path, id=p_path_id);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -222,9 +222,9 @@ pub async fn delete_indexer_proxy(configuration: &configuration::Configuration, 
 
 pub async fn get_indexer_proxy_by_id(configuration: &configuration::Configuration, id: i32) -> Result<models::IndexerProxyResource, Error<GetIndexerProxyByIdError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
-    let uri_str = format!("{}/api/v1/indexerproxy/{id}", configuration.base_path, id=p_id);
+    let uri_str = format!("{}/api/v1/indexerproxy/{id}", configuration.base_path, id=p_path_id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -374,13 +374,13 @@ pub async fn list_indexer_proxy_schema(configuration: &configuration::Configurat
 
 pub async fn test_indexer_proxy(configuration: &configuration::Configuration, force_test: Option<bool>, indexer_proxy_resource: Option<models::IndexerProxyResource>) -> Result<(), Error<TestIndexerProxyError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_force_test = force_test;
-    let p_indexer_proxy_resource = indexer_proxy_resource;
+    let p_query_force_test = force_test;
+    let p_body_indexer_proxy_resource = indexer_proxy_resource;
 
     let uri_str = format!("{}/api/v1/indexerproxy/test", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_force_test {
+    if let Some(ref param_value) = p_query_force_test {
         req_builder = req_builder.query(&[("forceTest", &param_value.to_string())]);
     }
     if let Some(ref apikey) = configuration.api_key {
@@ -402,7 +402,7 @@ pub async fn test_indexer_proxy(configuration: &configuration::Configuration, fo
         };
         req_builder = req_builder.header("X-Api-Key", value);
     };
-    req_builder = req_builder.json(&p_indexer_proxy_resource);
+    req_builder = req_builder.json(&p_body_indexer_proxy_resource);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -459,14 +459,14 @@ pub async fn testall_indexer_proxy(configuration: &configuration::Configuration,
 
 pub async fn update_indexer_proxy(configuration: &configuration::Configuration, id: &str, force_save: Option<bool>, indexer_proxy_resource: Option<models::IndexerProxyResource>) -> Result<models::IndexerProxyResource, Error<UpdateIndexerProxyError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_force_save = force_save;
-    let p_indexer_proxy_resource = indexer_proxy_resource;
+    let p_path_id = id;
+    let p_query_force_save = force_save;
+    let p_body_indexer_proxy_resource = indexer_proxy_resource;
 
-    let uri_str = format!("{}/api/v1/indexerproxy/{id}", configuration.base_path, id=crate::apis::urlencode(p_id));
+    let uri_str = format!("{}/api/v1/indexerproxy/{id}", configuration.base_path, id=crate::apis::urlencode(p_path_id));
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
-    if let Some(ref param_value) = p_force_save {
+    if let Some(ref param_value) = p_query_force_save {
         req_builder = req_builder.query(&[("forceSave", &param_value.to_string())]);
     }
     if let Some(ref apikey) = configuration.api_key {
@@ -488,7 +488,7 @@ pub async fn update_indexer_proxy(configuration: &configuration::Configuration, 
         };
         req_builder = req_builder.header("X-Api-Key", value);
     };
-    req_builder = req_builder.json(&p_indexer_proxy_resource);
+    req_builder = req_builder.json(&p_body_indexer_proxy_resource);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

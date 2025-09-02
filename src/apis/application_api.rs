@@ -95,13 +95,13 @@ pub enum UpdateApplicationsError {
 
 pub async fn create_applications(configuration: &configuration::Configuration, force_save: Option<bool>, application_resource: Option<models::ApplicationResource>) -> Result<models::ApplicationResource, Error<CreateApplicationsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_force_save = force_save;
-    let p_application_resource = application_resource;
+    let p_query_force_save = force_save;
+    let p_body_application_resource = application_resource;
 
     let uri_str = format!("{}/api/v1/applications", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_force_save {
+    if let Some(ref param_value) = p_query_force_save {
         req_builder = req_builder.query(&[("forceSave", &param_value.to_string())]);
     }
     if let Some(ref apikey) = configuration.api_key {
@@ -123,7 +123,7 @@ pub async fn create_applications(configuration: &configuration::Configuration, f
         };
         req_builder = req_builder.header("X-Api-Key", value);
     };
-    req_builder = req_builder.json(&p_application_resource);
+    req_builder = req_builder.json(&p_body_application_resource);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -152,10 +152,10 @@ pub async fn create_applications(configuration: &configuration::Configuration, f
 
 pub async fn create_applications_action_by_name(configuration: &configuration::Configuration, name: &str, application_resource: Option<models::ApplicationResource>) -> Result<(), Error<CreateApplicationsActionByNameError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_name = name;
-    let p_application_resource = application_resource;
+    let p_path_name = name;
+    let p_body_application_resource = application_resource;
 
-    let uri_str = format!("{}/api/v1/applications/action/{name}", configuration.base_path, name=crate::apis::urlencode(p_name));
+    let uri_str = format!("{}/api/v1/applications/action/{name}", configuration.base_path, name=crate::apis::urlencode(p_path_name));
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -177,7 +177,7 @@ pub async fn create_applications_action_by_name(configuration: &configuration::C
         };
         req_builder = req_builder.header("X-Api-Key", value);
     };
-    req_builder = req_builder.json(&p_application_resource);
+    req_builder = req_builder.json(&p_body_application_resource);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -195,9 +195,9 @@ pub async fn create_applications_action_by_name(configuration: &configuration::C
 
 pub async fn delete_applications(configuration: &configuration::Configuration, id: i32) -> Result<(), Error<DeleteApplicationsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
-    let uri_str = format!("{}/api/v1/applications/{id}", configuration.base_path, id=p_id);
+    let uri_str = format!("{}/api/v1/applications/{id}", configuration.base_path, id=p_path_id);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -236,7 +236,7 @@ pub async fn delete_applications(configuration: &configuration::Configuration, i
 
 pub async fn delete_applications_bulk(configuration: &configuration::Configuration, application_bulk_resource: Option<models::ApplicationBulkResource>) -> Result<(), Error<DeleteApplicationsBulkError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_application_bulk_resource = application_bulk_resource;
+    let p_body_application_bulk_resource = application_bulk_resource;
 
     let uri_str = format!("{}/api/v1/applications/bulk", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
@@ -260,7 +260,7 @@ pub async fn delete_applications_bulk(configuration: &configuration::Configurati
         };
         req_builder = req_builder.header("X-Api-Key", value);
     };
-    req_builder = req_builder.json(&p_application_bulk_resource);
+    req_builder = req_builder.json(&p_body_application_bulk_resource);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -278,9 +278,9 @@ pub async fn delete_applications_bulk(configuration: &configuration::Configurati
 
 pub async fn get_applications_by_id(configuration: &configuration::Configuration, id: i32) -> Result<models::ApplicationResource, Error<GetApplicationsByIdError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
-    let uri_str = format!("{}/api/v1/applications/{id}", configuration.base_path, id=p_id);
+    let uri_str = format!("{}/api/v1/applications/{id}", configuration.base_path, id=p_path_id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -430,7 +430,7 @@ pub async fn list_applications_schema(configuration: &configuration::Configurati
 
 pub async fn put_applications_bulk(configuration: &configuration::Configuration, application_bulk_resource: Option<models::ApplicationBulkResource>) -> Result<models::ApplicationResource, Error<PutApplicationsBulkError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_application_bulk_resource = application_bulk_resource;
+    let p_body_application_bulk_resource = application_bulk_resource;
 
     let uri_str = format!("{}/api/v1/applications/bulk", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
@@ -454,7 +454,7 @@ pub async fn put_applications_bulk(configuration: &configuration::Configuration,
         };
         req_builder = req_builder.header("X-Api-Key", value);
     };
-    req_builder = req_builder.json(&p_application_bulk_resource);
+    req_builder = req_builder.json(&p_body_application_bulk_resource);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -483,13 +483,13 @@ pub async fn put_applications_bulk(configuration: &configuration::Configuration,
 
 pub async fn test_applications(configuration: &configuration::Configuration, force_test: Option<bool>, application_resource: Option<models::ApplicationResource>) -> Result<(), Error<TestApplicationsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_force_test = force_test;
-    let p_application_resource = application_resource;
+    let p_query_force_test = force_test;
+    let p_body_application_resource = application_resource;
 
     let uri_str = format!("{}/api/v1/applications/test", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_force_test {
+    if let Some(ref param_value) = p_query_force_test {
         req_builder = req_builder.query(&[("forceTest", &param_value.to_string())]);
     }
     if let Some(ref apikey) = configuration.api_key {
@@ -511,7 +511,7 @@ pub async fn test_applications(configuration: &configuration::Configuration, for
         };
         req_builder = req_builder.header("X-Api-Key", value);
     };
-    req_builder = req_builder.json(&p_application_resource);
+    req_builder = req_builder.json(&p_body_application_resource);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -568,14 +568,14 @@ pub async fn testall_applications(configuration: &configuration::Configuration, 
 
 pub async fn update_applications(configuration: &configuration::Configuration, id: &str, force_save: Option<bool>, application_resource: Option<models::ApplicationResource>) -> Result<models::ApplicationResource, Error<UpdateApplicationsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_force_save = force_save;
-    let p_application_resource = application_resource;
+    let p_path_id = id;
+    let p_query_force_save = force_save;
+    let p_body_application_resource = application_resource;
 
-    let uri_str = format!("{}/api/v1/applications/{id}", configuration.base_path, id=crate::apis::urlencode(p_id));
+    let uri_str = format!("{}/api/v1/applications/{id}", configuration.base_path, id=crate::apis::urlencode(p_path_id));
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
-    if let Some(ref param_value) = p_force_save {
+    if let Some(ref param_value) = p_query_force_save {
         req_builder = req_builder.query(&[("forceSave", &param_value.to_string())]);
     }
     if let Some(ref apikey) = configuration.api_key {
@@ -597,7 +597,7 @@ pub async fn update_applications(configuration: &configuration::Configuration, i
         };
         req_builder = req_builder.header("X-Api-Key", value);
     };
-    req_builder = req_builder.json(&p_application_resource);
+    req_builder = req_builder.json(&p_body_application_resource);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

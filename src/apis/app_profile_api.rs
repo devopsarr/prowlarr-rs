@@ -62,7 +62,7 @@ pub enum UpdateAppProfileError {
 
 pub async fn create_app_profile(configuration: &configuration::Configuration, app_profile_resource: Option<models::AppProfileResource>) -> Result<models::AppProfileResource, Error<CreateAppProfileError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_app_profile_resource = app_profile_resource;
+    let p_body_app_profile_resource = app_profile_resource;
 
     let uri_str = format!("{}/api/v1/appprofile", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -86,7 +86,7 @@ pub async fn create_app_profile(configuration: &configuration::Configuration, ap
         };
         req_builder = req_builder.header("X-Api-Key", value);
     };
-    req_builder = req_builder.json(&p_app_profile_resource);
+    req_builder = req_builder.json(&p_body_app_profile_resource);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -115,9 +115,9 @@ pub async fn create_app_profile(configuration: &configuration::Configuration, ap
 
 pub async fn delete_app_profile(configuration: &configuration::Configuration, id: i32) -> Result<(), Error<DeleteAppProfileError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
-    let uri_str = format!("{}/api/v1/appprofile/{id}", configuration.base_path, id=p_id);
+    let uri_str = format!("{}/api/v1/appprofile/{id}", configuration.base_path, id=p_path_id);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -156,9 +156,9 @@ pub async fn delete_app_profile(configuration: &configuration::Configuration, id
 
 pub async fn get_app_profile_by_id(configuration: &configuration::Configuration, id: i32) -> Result<models::AppProfileResource, Error<GetAppProfileByIdError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
-    let uri_str = format!("{}/api/v1/appprofile/{id}", configuration.base_path, id=p_id);
+    let uri_str = format!("{}/api/v1/appprofile/{id}", configuration.base_path, id=p_path_id);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -308,10 +308,10 @@ pub async fn list_app_profile(configuration: &configuration::Configuration, ) ->
 
 pub async fn update_app_profile(configuration: &configuration::Configuration, id: &str, app_profile_resource: Option<models::AppProfileResource>) -> Result<models::AppProfileResource, Error<UpdateAppProfileError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_app_profile_resource = app_profile_resource;
+    let p_path_id = id;
+    let p_body_app_profile_resource = app_profile_resource;
 
-    let uri_str = format!("{}/api/v1/appprofile/{id}", configuration.base_path, id=crate::apis::urlencode(p_id));
+    let uri_str = format!("{}/api/v1/appprofile/{id}", configuration.base_path, id=crate::apis::urlencode(p_path_id));
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
     if let Some(ref apikey) = configuration.api_key {
@@ -333,7 +333,7 @@ pub async fn update_app_profile(configuration: &configuration::Configuration, id
         };
         req_builder = req_builder.header("X-Api-Key", value);
     };
-    req_builder = req_builder.json(&p_app_profile_resource);
+    req_builder = req_builder.json(&p_body_app_profile_resource);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
