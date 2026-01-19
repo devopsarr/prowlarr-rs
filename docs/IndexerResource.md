@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **config_contract** | Option<**String**> |  | [optional]
 **info_link** | Option<**String**> |  | [optional]
 **message** | Option<[**models::ProviderMessage**](ProviderMessage.md)> |  | [optional]
-**tags** | Option<**Vec<i32>**> |  | [optional]
+**tags** | Option<**HashSet<i32>**> |  | [optional]
 **presets** | Option<[**Vec<models::IndexerResource>**](IndexerResource.md)> |  | [optional]
 **indexer_urls** | Option<**Vec<String>**> |  | [optional]
 **legacy_urls** | Option<**Vec<String>**> |  | [optional]
