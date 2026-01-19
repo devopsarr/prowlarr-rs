@@ -78,8 +78,8 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **query** | Option<**String**> |  |  |
 **r#type** | Option<**String**> |  |  |
-**indexer_ids** | Option<[**Vec<i32>**](i32.md)> |  |  |
-**categories** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**indexer_ids** | Option<[**Vec<i32>**](I32.md)> |  |  |
+**categories** | Option<[**Vec<i32>**](I32.md)> |  |  |
 **limit** | Option<**i32**> |  |  |
 **offset** | Option<**i32**> |  |  |
 

@@ -23,11 +23,11 @@ Name | Type | Description  | Required | Notes
 **page** | Option<**i32**> |  |  |[default to 1]
 **page_size** | Option<**i32**> |  |  |[default to 10]
 **sort_key** | Option<**String**> |  |  |
-**sort_direction** | Option<[**SortDirection**](.md)> |  |  |
-**event_type** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**sort_direction** | Option<[**SortDirection**](SortDirection.md)> |  |  |
+**event_type** | Option<[**Vec<i32>**](I32.md)> |  |  |
 **successful** | Option<**bool**> |  |  |
 **download_id** | Option<**String**> |  |  |
-**indexer_ids** | Option<[**Vec<i32>**](i32.md)> |  |  |
+**indexer_ids** | Option<[**Vec<i32>**](I32.md)> |  |  |
 
 ### Return type
 
@@ -56,7 +56,7 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **indexer_id** | Option<**i32**> |  |  |
-**event_type** | Option<[**HistoryEventType**](.md)> |  |  |
+**event_type** | Option<[**HistoryEventType**](HistoryEventType.md)> |  |  |
 **limit** | Option<**i32**> |  |  |
 
 ### Return type
@@ -86,7 +86,7 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **date** | Option<**String**> |  |  |
-**event_type** | Option<[**HistoryEventType**](.md)> |  |  |
+**event_type** | Option<[**HistoryEventType**](HistoryEventType.md)> |  |  |
 
 ### Return type
 

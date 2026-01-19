@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **config_contract** | Option<**String**> |  | [optional]
 **info_link** | Option<**String**> |  | [optional]
 **message** | Option<[**models::ProviderMessage**](ProviderMessage.md)> |  | [optional]
-**tags** | Option<**Vec<i32>**> |  | [optional]
+**tags** | Option<**HashSet<i32>**> |  | [optional]
 **presets** | Option<[**Vec<models::IndexerProxyResource>**](IndexerProxyResource.md)> |  | [optional]
 **link** | Option<**String**> |  | [optional]
 **on_health_issue** | Option<**bool**> |  | [optional]
