@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.1.2](https://github.com/devopsarr/prowlarr-rs/compare/v0.1.1...v0.1.2) (2026-02-17)
+
+
+### Bug Fixes
+
+* **deps:** update dependency prowlarr/prowlarr to v2.3.0.5236 ([4ccec5c](https://github.com/devopsarr/prowlarr-rs/commit/4ccec5cde1d05ea85b3fd2c228e1ec2a5eafeb74))
+* **deps:** update openapitools/openapi-generator-cli docker tag to v7.17.0 ([a6ff21b](https://github.com/devopsarr/prowlarr-rs/commit/a6ff21bc7b1df8d1fd111bc803a3314f4f9b8c5e))
+* **deps:** update openapitools/openapi-generator-cli docker tag to v7.18.0 ([092a48c](https://github.com/devopsarr/prowlarr-rs/commit/092a48c906b73ac5a75991b601abbbb7af766024))
+* **deps:** update openapitools/openapi-generator-cli docker tag to v7.19.0 ([8acb998](https://github.com/devopsarr/prowlarr-rs/commit/8acb9985ef15692bde0abe6d3de35193ffb6c5d5))
+* **deps:** update openapitools/openapi-generator-cli docker tag to v7.20.0 ([2ef6462](https://github.com/devopsarr/prowlarr-rs/commit/2ef6462a3c84345d0e04fd413f07ded8cf3892c9))
+
 ## [0.1.1](https://github.com/devopsarr/prowlarr-rs/compare/v0.1.0...v0.1.1) (2025-09-02)
 
 
