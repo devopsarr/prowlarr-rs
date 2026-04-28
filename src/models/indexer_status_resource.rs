@@ -18,11 +18,11 @@ pub struct IndexerStatusResource {
     #[serde(rename = "indexerId", skip_serializing_if = "Option::is_none")]
     pub indexer_id: Option<i32>,
     #[serde(rename = "disabledTill", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub disabled_till: Option<Option<String>>,
+    pub disabled_till: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(rename = "mostRecentFailure", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub most_recent_failure: Option<Option<String>>,
+    pub most_recent_failure: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(rename = "initialFailure", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub initial_failure: Option<Option<String>>,
+    pub initial_failure: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
 }
 
 impl IndexerStatusResource {

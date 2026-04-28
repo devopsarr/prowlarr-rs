@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 **capabilities** | Option<[**models::IndexerCapabilityResource**](IndexerCapabilityResource.md)> |  | [optional]
 **priority** | Option<**i32**> |  | [optional]
 **download_client_id** | Option<**i32**> |  | [optional]
-**added** | Option<**String**> |  | [optional]
+**added** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **status** | Option<[**models::IndexerStatusResource**](IndexerStatusResource.md)> |  | [optional]
 **sort_name** | Option<**String**> |  | [optional]
 

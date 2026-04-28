@@ -50,7 +50,7 @@ pub struct ReleaseResource {
     #[serde(rename = "tvMazeId", skip_serializing_if = "Option::is_none")]
     pub tv_maze_id: Option<i32>,
     #[serde(rename = "publishDate", skip_serializing_if = "Option::is_none")]
-    pub publish_date: Option<String>,
+    pub publish_date: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "commentUrl", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub comment_url: Option<Option<String>>,
     #[serde(rename = "downloadUrl", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]

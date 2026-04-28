@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | Option<**i32**> |  | [optional]
 **indexer_id** | Option<**i32**> |  | [optional]
-**date** | Option<**String**> |  | [optional]
+**date** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **download_id** | Option<**String**> |  | [optional]
 **successful** | Option<**bool**> |  | [optional]
 **event_type** | Option<[**models::HistoryEventType**](HistoryEventType.md)> |  | [optional]

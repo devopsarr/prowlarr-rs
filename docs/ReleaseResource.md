@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **tmdb_id** | Option<**i32**> |  | [optional]
 **tvdb_id** | Option<**i32**> |  | [optional]
 **tv_maze_id** | Option<**i32**> |  | [optional]
-**publish_date** | Option<**String**> |  | [optional]
+**publish_date** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **comment_url** | Option<**String**> |  | [optional]
 **download_url** | Option<**String**> |  | [optional]
 **info_url** | Option<**String**> |  | [optional]
