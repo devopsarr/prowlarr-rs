@@ -70,7 +70,7 @@ pub struct IndexerResource {
     #[serde(rename = "downloadClientId", skip_serializing_if = "Option::is_none")]
     pub download_client_id: Option<i32>,
     #[serde(rename = "added", skip_serializing_if = "Option::is_none")]
-    pub added: Option<String>,
+    pub added: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
     pub status: Option<Box<models::IndexerStatusResource>>,
     #[serde(rename = "sortName", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]

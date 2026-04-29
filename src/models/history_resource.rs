@@ -18,7 +18,7 @@ pub struct HistoryResource {
     #[serde(rename = "indexerId", skip_serializing_if = "Option::is_none")]
     pub indexer_id: Option<i32>,
     #[serde(rename = "date", skip_serializing_if = "Option::is_none")]
-    pub date: Option<String>,
+    pub date: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "downloadId", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub download_id: Option<Option<String>>,
     #[serde(rename = "successful", skip_serializing_if = "Option::is_none")]

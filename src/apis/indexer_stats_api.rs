@@ -23,7 +23,7 @@ pub enum GetIndexerStatsError {
 }
 
 
-pub async fn get_indexer_stats(configuration: &configuration::Configuration, start_date: Option<String>, end_date: Option<String>, indexers: Option<&str>, protocols: Option<&str>, tags: Option<&str>) -> Result<models::IndexerStatsResource, Error<GetIndexerStatsError>> {
+pub async fn get_indexer_stats(configuration: &configuration::Configuration, start_date: Option<chrono::DateTime<chrono::FixedOffset>>, end_date: Option<chrono::DateTime<chrono::FixedOffset>>, indexers: Option<&str>, protocols: Option<&str>, tags: Option<&str>) -> Result<models::IndexerStatsResource, Error<GetIndexerStatsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_start_date = start_date;
     let p_query_end_date = end_date;
