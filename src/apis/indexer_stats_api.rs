@@ -35,10 +35,10 @@ pub async fn get_indexer_stats(configuration: &configuration::Configuration, sta
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref param_value) = p_query_start_date {
-        req_builder = req_builder.query(&[("startDate", &param_value.to_string())]);
+        req_builder = req_builder.query(&[("startDate", &param_value.to_rfc3339())]);
     }
     if let Some(ref param_value) = p_query_end_date {
-        req_builder = req_builder.query(&[("endDate", &param_value.to_string())]);
+        req_builder = req_builder.query(&[("endDate", &param_value.to_rfc3339())]);
     }
     if let Some(ref param_value) = p_query_indexers {
         req_builder = req_builder.query(&[("indexers", &param_value.to_string())]);
